@@ -15,6 +15,7 @@ authRouter.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2),
     email: Joi.string().required().custom(validateEmail),
+    password: Joi.string().required(),
   }),
 }), registerUser);
 
@@ -22,8 +23,8 @@ authRouter.post(
   '/signin',
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().required().min(2),
       email: Joi.string().required().custom(validateEmail),
+      password: Joi.string().required(),
     }),
   }),
   login,

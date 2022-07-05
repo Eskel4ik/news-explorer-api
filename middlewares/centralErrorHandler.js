@@ -1,4 +1,5 @@
 const centralErrorHandler = (err, res) => {
+  console.log(err);
   if (err.name === 'ValidationError' || err.message === 'Validation failed') {
     res.status(400).send({ message: 'Invalid data' });
   }
