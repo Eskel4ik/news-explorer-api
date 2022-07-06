@@ -12,11 +12,11 @@ const auth = require('./middlewares/auth');
 const centralErrorHandler = require('./middlewares/centralErrorHandler');
 
 const { PORT = 3000 } = process.env;
-const { NODE_ENV, DB_ADRESS } = process.env;
+const { NODE_ENV, DB_ADDRESS } = process.env;
 
 const app = express();
 app.set('trust proxy', 1);
-mongoose.connect(NODE_ENV === 'production' ? DB_ADRESS : 'mongodb://localhost:27017/aroundb');
+mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : 'mongodb://localhost:27017/aroundb');
 app.use(express.json());
 app.use(helmet());
 app.use(limiter);
