@@ -38,9 +38,9 @@ module.exports.createArticle = (req, res, next) => {
 module.exports.deleteArticle = (req, res, next) => {
   Article.findOne({ _id: req.params.articleId }).select('+owner').then((article) => {
     if (!article) {
-      throw new AppError(404, 'Card not found with that id');
+      throw new AppError(404, 'Article not found with that id');
     }
-    if (article.owner !== req.user._id) {
+    if (article.owner.toString() !== req.user._id) {
       throw new AppError(403, 'Forbidden');
     }
     return Article.findOneAndDelete(req.params.articleId)
