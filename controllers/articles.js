@@ -3,7 +3,10 @@ const AppError = require('../errors/app-error');
 
 module.exports.getArticles = (req, res, next) => {
   Article.find({})
-    .then((articles) => res.send(articles))
+    .select('+owner')
+    .then((articles) => {
+      res.send(articles.filter((item) => item.owner === req.user._id));
+    })
     .catch((err) => next(err));
 };
 
