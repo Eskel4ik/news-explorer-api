@@ -13,6 +13,7 @@ const articleSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    default: 'Title',
   },
   text: {
     type: String,
@@ -32,6 +33,7 @@ const articleSchema = new mongoose.Schema({
       validator: validateUrl,
       message: setMessage,
     },
+    unique: true,
     required: true,
   },
   image: {
@@ -41,6 +43,7 @@ const articleSchema = new mongoose.Schema({
       message: setMessage,
     },
     required: true,
+    default: 'https://cdn.dribbble.com/users/88213/screenshots/8560585/media/7263b7aaa8077a322b0f12a7cd7c7404.png?compress=1&resize=400x300',
   },
   owner: {
     type: String,

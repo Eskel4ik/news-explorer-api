@@ -16,10 +16,10 @@ module.exports.registerUser = (req, res, next) => {
       name: req.body.name, password: hash, email,
     }))
     .then((user) => {
-      res.send({
+      res.status(201).send({
         name: user.name,
         email: user.email,
-        _id: user._id,
+        _id: user._id.valueOf(),
       });
     })
     .catch((err) => {
